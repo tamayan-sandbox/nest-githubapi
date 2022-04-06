@@ -5,8 +5,8 @@ import { firstValueFrom } from 'rxjs';
 @Injectable()
 export class GithubService {
   constructor(private httpService: HttpService) {}
-  async fetch(): Promise<string> {
-    const url = 'https://api.github.com/users/tamayan';
+  async getUser(name: string): Promise<string> {
+    const url = 'https://api.github.com/users/' + name;
     const res = await firstValueFrom(this.httpService.get(url));
     return res.data;
   }

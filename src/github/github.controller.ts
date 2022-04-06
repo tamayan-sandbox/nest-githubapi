@@ -5,8 +5,9 @@ import { GithubService } from './github.service';
 export class GithubController {
   constructor(private readonly githubService: GithubService) {}
 
-  @Get()
-  index() {
-    return this.githubService.fetch();
+  @Get('user')
+  user() {
+    const userName = 'tamayan';
+    return this.githubService.getUser(userName);
   }
 }
