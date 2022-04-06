@@ -1,13 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { GithubService } from './github.service';
 
 @Controller('github')
 export class GithubController {
   constructor(private readonly githubService: GithubService) {}
 
-  @Get('user')
-  user() {
-    const userName = 'tamayan';
-    return this.githubService.getUser(userName);
+  @Get('users/:name')
+  users(@Param('name') name) {
+    return this.githubService.getUser(name);
   }
 }
