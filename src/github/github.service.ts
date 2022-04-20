@@ -12,7 +12,7 @@ export class GithubService {
   }
 
   async getIssues(owner: string, repo: string): Promise<string> {
-    const url = 'https://api.github.com/repos/' + owner + '/' + repo + 'issues';
+    const url = 'https://api.github.com/repos/' + owner + '/' + repo + '/issues';
     const res = await firstValueFrom(this.httpService.get(url));
     return res.data;
   }
