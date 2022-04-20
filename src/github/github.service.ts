@@ -16,4 +16,17 @@ export class GithubService {
     const res = await firstValueFrom(this.httpService.get(url));
     return res.data;
   }
+
+  async createIssues(owner: string, repo: string, data): Promise<string> {
+    const url = 'https://api.github.com/repos/' + owner + '/' + repo + '/issues';
+    const headers = {
+      'Content-Type': 'application/json',
+      Accept: 'application/vnd.github.v3+json',
+      Authorization: 'token ' + process.env.GITHUB_TOKEN,
+    };
+    const res = await firstValueFrom(
+      this.httpService.post(url, data, { headers: headers }),
+    );
+    return res.data;
+  }
 }

@@ -1,5 +1,6 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Header, Param, Post } from "@nestjs/common";
 import { GithubService } from './github.service';
+import { Dto } from './dto';
 
 @Controller('github')
 export class GithubController {
@@ -13,5 +14,10 @@ export class GithubController {
   @Get('repos/:owner/:repo/issues')
   issues(@Param('owner') owner: string, @Param('repo') repo: string) {
     return this.githubService.getIssues(owner, repo);
+  }
+
+  @Post('repos/:owner/:repo/issues')
+  createIssues(@Param('owner') owner: string, @Param('repo') repo: string, @Body() data: Dto) {
+    return this.githubService.createIssues(owner, repo, data);
   }
 }
