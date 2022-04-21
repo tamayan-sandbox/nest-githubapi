@@ -5,6 +5,7 @@ import { lastValueFrom } from 'rxjs';
 @Injectable()
 export class GithubService {
   constructor(private httpService: HttpService) {}
+
   async getUser(name: string): Promise<string> {
     const url = 'https://api.github.com/users/' + name;
     const res = await lastValueFrom(this.httpService.get(url));
